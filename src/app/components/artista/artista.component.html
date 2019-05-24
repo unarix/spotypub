@@ -1,0 +1,49 @@
+<app-loading *ngIf="loadingArtist"></app-loading>
+
+<div class="container">
+
+  <div style="padding:1em;"  class="media animated fadeIn list-inline align-items-center" *ngIf="!loadingArtist">
+    <img [src]="artista.images | noimage" class="img-circle" style="width: 5em;"/>
+    <div class="media-body" style="padding: 2em;">
+      <h3 class="mt-0">{{ artista.name }}</h3>
+      <a [href]="artista.external_urls.spotify" target="_blank">
+          Popularidad: {{ artista.popularity }}
+        </a>
+    </div>
+  </div>
+
+  <ul class="list-unstyled list-inline ">
+    <li style="padding-top: 0.5em" class="media list-inline-item align-items-center" *ngFor="let track of topTracks">
+      <img [src]="track.album.images | noimage" class="mr-3 img-circle" style="width: 3em;" alt="...">
+      <div class="media-body">
+        <h5 class="mt-0 mb-1">{{ track.name }}</h5>
+        <p>{{ track.album.name }}</p>
+
+        <!--iframe [src]="track.uri | domseguro" frameborder="0" allowtransparency="true" allow="encrypted-media"> 
+
+        </iframe-->
+      </div>
+      <span (click)="setNextTrack(track.id)" class="fa fa-step-forward fa-1x" aria-hidden="true"></span>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="exito" role="alert" class="alertpos alert alert-success animated fadeIn" >
+  <strong>Listo!</strong>
+  <button type="button" class="close" (click)="exito=false" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <p>
+      {{ mensaje }}
+  </p>
+</div>
+
+<div *ngIf="error" role="alert" class="alertpos alert alert-danger animated fadeIn" >
+  <strong>Error</strong>
+  <button type="button" class="close" (click)="error=false" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <p>
+      {{ mensaje }}
+  </p>
+</div>

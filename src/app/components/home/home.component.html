@@ -1,0 +1,19 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<div class="container">
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h3><br></h3>
+            <h1><span style="color:gray">recomenda</span>dos</h1>
+        </div>
+</div>
+
+<div *ngIf="error" class="alert alert-danger animated fadeIn">
+    <h3>Error</h3>
+    <p>
+        {{ mensajeError }}
+    </p>
+</div>
+
+
+
+<app-tarjetas [items]="nuevasCanciones"></app-tarjetas>

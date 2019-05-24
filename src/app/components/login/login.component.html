@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h3><br></h3>
+      <!--h1>Log<span style="color:gray">in</span><span style="color:#33FF5B">Spotify</span></h1-->
+      <img style="width:150px;" src="https://musicodiy.com/wp-content/uploads/2018/07/Spotify_Logo_feature.png"/>
+      <p *ngIf="!logueado">Para usar SpotyPub debes tener una cuenta de spotify. En caso que ya la tengas, solo debes loguearte y otorgar los permisos!<p>
+      <p *ngIf="logueado">Perfecto, ya estas logueado en spotify!<p>
+      <button *ngIf="!logueado" type="button" class="btn btn-success" (click)="login()">Login</button>
+  </div>
+  
+  <app-loading class="m-5" *ngIf="loading"></app-loading>
+  
+  </div>
