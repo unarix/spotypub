@@ -12,10 +12,10 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService) { }
 
   ngOnInit() {
-    if(localStorage.getItem('token') == "")
-      this.logueado = false;
-    else
-      this.logueado = true;
+    //if(localStorage.getItem('token') == "")
+    //  this.logueado = false;
+    //else
+    //  this.logueado = true;
   }
 
   login() {

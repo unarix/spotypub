@@ -6,8 +6,5 @@
       <p *ngIf="!logueado">Para usar SpotyPub debes tener una cuenta de spotify. En caso que ya la tengas, solo debes loguearte y otorgar los permisos!<p>
       <p *ngIf="logueado">Perfecto, ya estas logueado en spotify!<p>
       <button *ngIf="!logueado" type="button" class="btn btn-success" (click)="login()">Login</button>
-  </div>
-  
-  <app-loading class="m-5" *ngIf="loading"></app-loading>
-  
-  </div>
+  </div>  
+</div>
