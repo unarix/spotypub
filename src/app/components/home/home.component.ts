@@ -30,6 +30,7 @@ export class HomeComponent {
       const valorFinal = values[1].split('&');
       console.log(valorFinal);
       localStorage.setItem('token', valorFinal[0]);
+      localStorage.setItem('logOk', 'true');
     }
     setTimeout(() => {
       //this.router.navigate(['/search']);
@@ -46,7 +47,6 @@ export class HomeComponent {
     //La data es lo que regresa el servicio
     this.spotify.getNewReleases()
         .subscribe( (data: any) => {
-
           console.log(data);
           this.nuevasCanciones = data;
           this.loading = false;
@@ -56,7 +56,8 @@ export class HomeComponent {
           this.error = true;
           console.log(errorServicio);
           this.mensajeError = errorServicio.error.error.message;
-
+          localStorage.setItem('logOk', 'false');
+          this.router.navigate(['/login']);
         });
   }
 
