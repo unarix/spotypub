@@ -9,6 +9,7 @@ export class LoginService {
 
   CLIENT_ID = '318fa35ac32b4b92b19611cc41709790';
   //REDIRECT_URI = 'http://localhost:4200/home';
+  //REDIRECT_URI = 'https://spotypub.azurewebsites.net/home';
   REDIRECT_URI = 'https://spotypub.azurewebsites.net/home';
 
   constructor(private router: Router) { }
