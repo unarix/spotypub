@@ -31,6 +31,7 @@ export class HomeComponent {
       console.log(valorFinal);
       localStorage.setItem('token', valorFinal[0]);
       localStorage.setItem('logOk', 'true');
+      this.spotify.getAdminToken();
     }
     setTimeout(() => {
       //this.router.navigate(['/search']);

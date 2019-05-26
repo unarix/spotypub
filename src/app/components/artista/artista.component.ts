@@ -24,10 +24,8 @@ export class ArtistaComponent {
     this.loadingArtist = true;
 
     this.router.params.subscribe( params => {
-      this.spotify.getToken();
       this.getArtista( params['id'] );
       this.getTopTracks( params['id'] );
-
     });
 
   }

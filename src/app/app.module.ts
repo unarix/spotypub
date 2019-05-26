@@ -21,6 +21,8 @@ import { DomseguroPipe } from './pipes/domseguro.pipe';
 import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { LoginComponent } from './components/login/login.component';
+import { LoginadminComponent } from './components/loginadmin/loginadmin.component';
+import { SetokenComponent } from './components/setoken/setoken.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { LoginComponent } from './components/login/login.component';
     DomseguroPipe,
     TarjetasComponent,
     LoadingComponent,
-    LoginComponent
+    LoginComponent,
+    LoginadminComponent,
+    SetokenComponent
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,8 @@ import { map } from "rxjs/operators";
 })
 export class SpotifyService {
 
-  accessToken: any = localStorage.getItem('token'); //'BQD4jT-tLupMrnZLRDGNUF1uEiS43zYyAuyOUPh_Y8L37_m025uvZ5rakXGVJeKuOHFY4E5L5b1g2aUt_qQ';
+  accessToken: any = localStorage.getItem('token');
+  playListToken: any = localStorage.getItem('tokenAdmin');
   tokenType: string;
 
   constructor(private http: HttpClient) {
@@ -22,27 +23,26 @@ export class SpotifyService {
   }
 
   // Para  consulta generica
-  getToken() : any {
-    // console.log("Obteniendo Token...");
-    // var tok = "";
-    
-    // const url = 'https://a2klab.azurewebsites.net/api/spotify'
-    
-    // const options = {
-    //   headers: new HttpHeaders({
-    //     'accept':  'application/json'        
-    //     })
-    //   };
-
-    // this.http.get(url,options).subscribe(
-    //   (val) => {
-    //       console.log("obtenido " + val);
-    //       this.accessToken = val;
-    //       return val;
-    //   },
-    //   response => {
-    //       console.log("ERROR AL OBTENER TOKEN", response);
-    //   });
+  getAdminToken() : any {
+    console.log("Obteniendo Token...");
+    var tok = "";
+    const url = 'https://a2klab.azurewebsites.net/api/spotify'
+    const options = {
+      headers: new HttpHeaders({
+        'accept':  'application/json'        
+        })
+      };
+    this.http.get(url,options).subscribe(
+      (val) => {
+          console.log("obtenido " + val.toString());
+          console.log("obtenido tostring: " + val.toString());
+          localStorage.setItem('tokenAdmin', val.toString());
+          this.playListToken = localStorage.getItem('tokenAdmin');
+          return val;
+      },
+      response => {
+          console.log("ERROR AL OBTENER TOKEN", response);
+      });
   }
 
   // Para  consulta generica
@@ -105,7 +105,7 @@ export class SpotifyService {
 
     const options = {
       headers: new HttpHeaders({
-        'Authorization': "Bearer " + this.accessToken,
+        'Authorization': "Bearer " + this.playListToken,
         'Content-Type':  'application/x-www-form-urlencoded;'        
         })
       };
