@@ -13,6 +13,7 @@ export class ArtistaComponent {
   topTracks: any[] = [];
 
   loadingArtist: boolean;
+  loading: boolean;
 
   exito: boolean;
   error: boolean;
@@ -22,6 +23,7 @@ export class ArtistaComponent {
               private spotify: SpotifyService ) {
 
     this.loadingArtist = true;
+    this.loading = false;
 
     this.router.params.subscribe( params => {
       this.getArtista( params['id'] );
@@ -57,14 +59,20 @@ export class ArtistaComponent {
 
   setNextTrack( id: string)
   {
+    this.loading = true;
+
+    this.spotify.getAdminToken();
+
     console.log("paso con id: " + id);
     this.spotify.setNextTrack(id).subscribe(
       (val) => {
           console.log(val);
           this.exito = true;
           this.mensaje = "Tu cancion ya esta en la lista de reproduccion!"
+          this.loading = false;
       },
       response => {
+          this.loading = false;
           console.log("ERROR EN LA RESPUESTA", response);
           this.error = true;
           this.mensaje = "Token invalido"

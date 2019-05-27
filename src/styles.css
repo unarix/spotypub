@@ -13,6 +13,7 @@
   top: 60px;
   left: 0;
   z-index: MODAL_ZINDEX - 1;
+  width: 100%;
 }
 
 .align-items-center {
@@ -76,6 +77,14 @@
 
 .fadeIn {
   animation-name: fadeIn;
+}
+
+.nt_fixed{
+  position: absolute;
+  left: 50%;
+  margin-left: -50px;
+  bottom: 40%;
+  margin-top: -50px;
 }
 
 .lds-ripple {

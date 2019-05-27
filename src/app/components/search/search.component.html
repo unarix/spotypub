@@ -1,15 +1,15 @@
-<div class="container">
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h3><br></h3>
-    <h1><span style="color:gray">suma</span>tracks</h1>
-    <p>Busca un artista... elegi una cancion y agregala a la playlist del bar.</p>
-    <p><br></p>
-    <p class="lead text-muted">
-        <input #termino type="text" (keyup)="buscar(termino.value)" class="form-control" placeholder="Buscar artista...">
-    </p>
-</div>
+<div class="container animated fadeIn">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h3><br></h3>
+        <h1><span style="color:gray">suma</span>tracks</h1>
+        <p>Busca un artista... elegi una cancion y agregala a la playlist del bar.</p>
+        <p><br></p>
+        <p class="lead text-muted">
+            <input #termino type="text" (keyup)="buscar(termino.value)" class="form-control" placeholder="Buscar artista...">
+        </p>
+    </div>
 
-<app-loading class="m-5" *ngIf="loading"></app-loading>
-<app-tarjetas *ngIf="!loading" [items]="artistas"></app-tarjetas>
+    <app-loading class="m-5" *ngIf="loading"></app-loading>
+    <app-tarjetas *ngIf="!loading" [items]="artistas"></app-tarjetas>
 
 </div>

@@ -32,13 +32,12 @@ export class SpotifyService {
         'accept':  'application/json'        
         })
       };
-    this.http.get(url,options).subscribe(
+    return this.http.get(url,options).subscribe(
       (val) => {
           console.log("obtenido " + val.toString());
           console.log("obtenido tostring: " + val.toString());
           localStorage.setItem('tokenAdmin', val.toString());
           this.playListToken = localStorage.getItem('tokenAdmin');
-          return val;
       },
       response => {
           console.log("ERROR AL OBTENER TOKEN", response);
