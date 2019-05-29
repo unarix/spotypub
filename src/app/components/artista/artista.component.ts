@@ -33,6 +33,13 @@ export class ArtistaComponent {
   }
 
 
+  millisToMinutesAndSeconds(millis) {
+    let minutes: number = Math.floor(millis / 60000);
+    let seconds: number = ((millis % 60000) / 1000);
+    var secondsx = (seconds < 10 ? '0' : '') 
+    return minutes + ":" + secondsx + seconds.toFixed(0);
+  }
+
   getArtista( id: string ) {
 
     this.loadingArtist = true;

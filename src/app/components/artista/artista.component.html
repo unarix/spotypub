@@ -33,22 +33,29 @@
   <div class="accordion" id="accordionExample">
     <div *ngFor="let track of topTracks">
         <div class="media" data-toggle="collapse" [attr.data-target]="'#' + track.id">  
-          <img [src]="track.album.images | noimage" class="mr-3 img-circle" style="width: 3em;" alt="...">
-          <div class="media-body">
-            <h5 class="mt-0 mb-1">{{ track.name }}</h5>
-            <p>{{ track.album.name }}</p>
+          <img [src]="track.album.images | noimage" class="mr-3 img-circle" style="width: 2em;" alt="...">
+          <div class="media-body" style="padding-right: 0.8em;">
+            <h5 class="mt-0 mb-1" style="font-size: 0.9em">{{ track.name }}</h5>
+            <p style="font-size: 0.7em">{{ track.album.name }}</p>
           </div>
-          <span (click)="setNextTrack(track.id)" class="far fa-play-circle fa-2x" aria-hidden="true"></span>
+          <div style="font-size: 0.9em">
+              {{millisToMinutesAndSeconds(track.duration_ms)}}
+          </div>
         </div>
   
       <div id="{{track.id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
           <div class="container" style="padding-top: 1em; padding-bottom: 2em;">
               <div class="row">
-                <div class="col-sm text-left">
+                <!--div class="col-sm text-left">
                     <p>Esta cancion forma parte del album "{{ track.album.name }}" que fue publicado en la fecha {{ track.album.release_date }}, si queres podes escuchar una parte del tema antes de agregarlo a la playlist</p>
-                </div>
+                </div-->
                 <div class="col-sm text-center">
-                  <iframe [src]="track.uri | domseguro" frameborder="0" style="width: 250px;" width="250" height="80" frameborder="0"  allowtransparency="true" allow="encrypted-media"> </iframe>
+                  <audio controls>
+                      <source src="{{ track.preview_url }}" type="audio/ogg">
+                  </audio>
+                  <br>
+                  <br>
+                  <button type="button" (click)="setNextTrack(track.id)" class="btn btn-success waves-effect px-3"><i class="fas fa-rocket pr-2" aria-hidden="true"></i>Add to playlist</button>
                 </div>
               </div>
             </div>
