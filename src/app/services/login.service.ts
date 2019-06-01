@@ -8,10 +8,10 @@ import { Injectable } from "@angular/core";
 export class LoginService {
 
   CLIENT_ID = '318fa35ac32b4b92b19611cc41709790';
-  REDIRECT_URI = 'http://localhost:4200/home';
-  REDIRECT_URI_ADMIN = 'http://localhost:4200/setoken';
-  //REDIRECT_URI = 'https://spotypub.azurewebsites.net/home';
-  //REDIRECT_URI_ADMIN = 'https://spotypub.azurewebsites.net/setoken';
+  //REDIRECT_URI = 'http://localhost:4200/home';
+  //REDIRECT_URI_ADMIN = 'http://localhost:4200/setoken';
+  REDIRECT_URI = 'https://spotypub.azurewebsites.net/home';
+  REDIRECT_URI_ADMIN = 'https://spotypub.azurewebsites.net/setoken';
 
   constructor(private router: Router) { }
 

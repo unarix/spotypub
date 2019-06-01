@@ -6,7 +6,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Se presenta las posibilidades que ofrece la utilización del Web API de Spotify en un ejemplo realizado con Angular 7.
 
-![alt text](https://test.com/img.png)
+![alt text](https://raw.githubusercontent.com/unarix/spotypub/master/home_iphone.png)
+
+![alt text](https://raw.githubusercontent.com/unarix/spotypub/master/home_ipad.png)
 
 ## Para ejecutar el proyecto
 
