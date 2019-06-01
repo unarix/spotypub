@@ -88,6 +88,12 @@ export class SpotifyService {
     );
   }
 
+  getPlaylist(termino: string) {
+    return this.getQuery(`playlists/${termino}`).pipe(
+      map(data => data["tracks"].items)
+    );
+  }
+
   getArtista(id: string) {
     return this.getQuery(`artists/${id}`);
     // .pipe( map( data => data['artists'].items));

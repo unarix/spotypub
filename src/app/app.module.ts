@@ -23,6 +23,7 @@ import { LoadingComponent } from './components/shared/loading/loading.component'
 import { LoginComponent } from './components/login/login.component';
 import { LoginadminComponent } from './components/loginadmin/loginadmin.component';
 import { SetokenComponent } from './components/setoken/setoken.component';
+import { PlaypubComponent } from './components/playpub/playpub.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SetokenComponent } from './components/setoken/setoken.component';
     LoadingComponent,
     LoginComponent,
     LoginadminComponent,
-    SetokenComponent
+    SetokenComponent,
+    PlaypubComponent
   ],
   imports: [
     BrowserModule,

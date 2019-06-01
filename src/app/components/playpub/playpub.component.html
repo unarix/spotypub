@@ -1,0 +1,38 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<div class="container animated fadeIn">
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h3><br></h3>
+            <h1><span style="color:gray">play</span>list</h1>
+            <p>Esta es la playlist que se esta reproduciendo ahora!.</p>
+        </div>
+</div>
+
+<div class="container">
+    <div class="accordion" id="accordionExample">
+        <div *ngFor="let x of playlist">
+            <div class="media" data-toggle="collapse" [attr.data-target]="'#' + x.track.id">  
+              <img [src]="x.track.album.images[0].url" class="mr-3 img-circle" style="width: 2em;" alt="...">
+              <div class="media-body" style="padding-right: 0.8em;">
+                <h5 class="mt-0 mb-1" style="font-size: 0.9em">{{ x.track.name}}</h5>
+                <p style="font-size: 0.7em">{{ x.track.name }}</p>
+              </div>
+              <div style="font-size: 0.9em">
+                    Agregado el {{ x.added_at | date: 'dd-MM' }}
+                    <br>
+                    a las {{ x.added_at | date: 'hh:mm' }}
+              </div>
+            </div>
+      
+          <div id="'#' + x.track.id" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="container" style="padding-top: 1em; padding-bottom: 2em;">
+                  <div class="row">
+                    <div class="col-sm text-center">
+
+                    </div>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </div>
+</div>

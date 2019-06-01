@@ -33,6 +33,9 @@ export class SearchComponent {
             console.log(data);
             this.artistas = data;
             this.loading = false;
+          }, ( errorServicio ) => {
+            localStorage.setItem('logOk', 'false');
+            this.router.navigate(['/login']);
           });
   }
 

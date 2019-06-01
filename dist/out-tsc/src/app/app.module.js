@@ -15,6 +15,10 @@ import { NoimagePipe } from './pipes/noimage.pipe';
 import { DomseguroPipe } from './pipes/domseguro.pipe';
 import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
+import { LoginComponent } from './components/login/login.component';
+import { LoginadminComponent } from './components/loginadmin/loginadmin.component';
+import { SetokenComponent } from './components/setoken/setoken.component';
+import { PlaypubComponent } from './components/playpub/playpub.component';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -22,19 +26,24 @@ var AppModule = /** @class */ (function () {
         NgModule({
             declarations: [
                 AppComponent,
-                HomeComponent,
                 SearchComponent,
+                HomeComponent,
                 ArtistaComponent,
                 NavbarComponent,
                 NoimagePipe,
                 DomseguroPipe,
                 TarjetasComponent,
-                LoadingComponent
+                LoadingComponent,
+                LoginComponent,
+                LoginadminComponent,
+                SetokenComponent,
+                PlaypubComponent
             ],
             imports: [
                 BrowserModule,
                 HttpClientModule,
-                RouterModule.forRoot(ROUTES, { useHash: true })
+                // RouterModule.forRoot( ROUTES, { useHash: true } )
+                RouterModule.forRoot(ROUTES)
             ],
             providers: [],
             bootstrap: [AppComponent]

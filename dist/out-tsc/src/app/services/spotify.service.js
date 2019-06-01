@@ -9,17 +9,47 @@ import { map } from "rxjs/operators";
 var SpotifyService = /** @class */ (function () {
     function SpotifyService(http) {
         this.http = http;
-        // console.log('Spotify Service Listo');
+        this.accessToken = localStorage.getItem('token');
+        this.playListToken = localStorage.getItem('tokenAdmin');
+        console.log('Spotify Service Listo');
+        console.log(localStorage.getItem('token'));
     }
+    // Para  consulta generica
+    SpotifyService.prototype.getAdminToken = function () {
+        var _this = this;
+        console.log("Obteniendo Token...");
+        var tok = "";
+        var url = 'https://a2klab.azurewebsites.net/api/spotify';
+        var options = {
+            headers: new HttpHeaders({
+                'accept': 'application/json'
+            })
+        };
+        return this.http.get(url, options).subscribe(function (val) {
+            console.log("obtenido " + val.toString());
+            console.log("obtenido tostring: " + val.toString());
+            localStorage.setItem('tokenAdmin', val.toString());
+            _this.playListToken = localStorage.getItem('tokenAdmin');
+        }, function (response) {
+            console.log("ERROR AL OBTENER TOKEN", response);
+        });
+    };
     // Para  consulta generica
     SpotifyService.prototype.getQuery = function (query) {
         var url = "https://api.spotify.com/v1/" + query;
         //Pipe transformacion de Datos
         // Defino Headers que API de Spotify Necesita
         var headers = new HttpHeaders({
-            Authorization: "Bearer BQBPk5bH8gLgaPTVQ8j7EmiysYlMMWlcBuWq03eKwJYE1_Ia8N6Pr0_QfOe1XkwiDsVb3pNVi375GNR1bVE"
+            Authorization: "Bearer " + this.accessToken
         });
         return this.http.get(url, { headers: headers });
+    };
+    SpotifyService.prototype.postQuery = function (query) {
+        var url = "https://api.spotify.com/v1/" + query;
+        var headers = new HttpHeaders({
+            Authorization: "Bearer " + this.accessToken
+        });
+        return this.http.post(url, { headers: headers });
     };
     //Cuando API Spotify envia la respuesta envia demasiada informacion y MAP
     //simplemente me filtra lo que a mi me sirve
@@ -28,7 +58,10 @@ var SpotifyService = /** @class */ (function () {
     };
     // Referente al Search
     SpotifyService.prototype.getArtistas = function (termino) {
-        return this.getQuery("search?q=" + termino + "&type=artist&limit=15").pipe(map(function (data) { return data["artists"].items; }));
+        return this.getQuery("search?q=" + termino + "*&type=artist&limit=15").pipe(map(function (data) { return data["artists"].items; }));
+    };
+    SpotifyService.prototype.getPlaylist = function (termino) {
+        return this.getQuery("playlists/" + termino).pipe(map(function (data) { return data["playlist"].items; }));
     };
     SpotifyService.prototype.getArtista = function (id) {
         return this.getQuery("artists/" + id);
@@ -36,6 +69,17 @@ var SpotifyService = /** @class */ (function () {
     };
     SpotifyService.prototype.getTopTracks = function (id) {
         return this.getQuery("artists/" + id + "/top-tracks?country=us").pipe(map(function (data) { return data["tracks"]; }));
+    };
+    SpotifyService.prototype.setNextTrack = function (id) {
+        var url = "https://api.spotify.com/v1/playlists/7bbQjBOgCCaTmZxhQXKRwU/tracks?uris=spotify%3Atrack%3A" + id;
+        var options = {
+            headers: new HttpHeaders({
+                'Authorization': "Bearer " + this.playListToken,
+                'Content-Type': 'application/x-www-form-urlencoded;'
+            })
+        };
+        var body = 'grant_type=client_credentials';
+        return this.http.post(url, body, options);
     };
     SpotifyService = tslib_1.__decorate([
         Injectable({
